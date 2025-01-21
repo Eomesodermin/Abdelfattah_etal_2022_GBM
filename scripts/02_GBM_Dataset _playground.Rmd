@@ -325,17 +325,101 @@ dev.off()
 
 
 
+
+
+
+
+
 CA9.values <- GBM.only@assays$RNA@data[grep("^CA9$", rownames(GBM.only@assays$RNA@data)), ]
 CA9.expression <- CA9.values > 0
 table(CA9.expression)
 
-unique(GBM.only@meta.data$donor_id)
-unique(GBM.only@meta.data$Patient)
-unique(GBM.only@meta.data$CopyKatPrediction)
-unique(GBM.only@meta.data$Type)
+#unique(GBM.only@meta.data$donor_id)
+#unique(GBM.only@meta.data$Patient)
+#unique(GBM.only@meta.data$CopyKatPrediction)
+#unique(GBM.only@meta.data$Type)
 sum(rownames(GBM.only@meta.data) != names(CA9.expression))
 
 GBM.only@meta.data$CA9status <- CA9.expression
+
+
+CA9.values <- GBM.only@assays$RNA@data[grep("^CA9$", rownames(GBM.only@assays$RNA@data)), ]
+CA9.expression <- CA9.values > 0
+table(CA9.expression)
+GBM.only@meta.data$CA9status <- CA9.expression
+
+grep("^VEGFA$", rownames(GBM.only@assays$RNA@data), value = T)
+VEGFA.values <- GBM.only@assays$RNA@data[grep("^VEGFA$", rownames(GBM.only@assays$RNA@data)), ]
+VEGFA.expression <- VEGFA.values > 0
+table(VEGFA.expression)
+GBM.only@meta.data$VEGFAstatus <- VEGFA.expression
+
+grep("^IL1B$", rownames(GBM.only@assays$RNA@data), value = T)
+IL1B.values <- GBM.only@assays$RNA@data[grep("^IL1B$", rownames(GBM.only@assays$RNA@data)), ]
+IL1B.expression <- IL1B.values > 0
+table(IL1B.expression)
+GBM.only@meta.data$IL1Bstatus <- IL1B.expression
+
+
+
+
+scCustomize::VlnPlot_scCustom(GBM.only, 
+                 "IL1B", 
+                 pt.size = 0.1,
+                 group.by = "CA9status")
+
+
+
+
+scCustomize::VlnPlot_scCustom(GBM.only, 
+                 "IL1B", 
+                 pt.size = 0.1,
+                 group.by = "VEGFAstatus")
+
+
+
+
+p1 <- scCustomize::VlnPlot_scCustom(GBM.only, 
+                 "CA9", 
+                 pt.size = 0.1,
+                 group.by = "CA9status")
+
+
+p2 <- scCustomize::VlnPlot_scCustom(GBM.only, 
+                 "IL1B", 
+                 pt.size = 0.1,
+                 group.by = "CA9status")
+
+p1|p2
+
+
+
+
+scCustomize::VlnPlot_scCustom(GBM.only, 
+                 "CA9", 
+                 pt.size = 0.1,
+                 group.by = "CA9status")
+
+scCustomize::VlnPlot_scCustom(GBM.only, 
+                 "IL1B", 
+                 pt.size = 0.1,
+                 group.by = "IL1Bstatus")
+
+
+
+
+table(GBM.only@meta.data$IL1Bstatus, GBM.only@meta.data$VEGFAstatus)
+
+
+
+
+
+
+
+scCustomize::VlnPlot_scCustom(GBM.only, 
+                 "CXCL12", 
+                 pt.size = 0.1,
+                 group.by = "CA9status")
 
 
 
