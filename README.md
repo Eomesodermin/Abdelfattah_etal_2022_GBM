@@ -1,13 +1,24 @@
-# Analysis of published GBM dataset
+# Abdelfattah et al. 2022 — human glioma immune atlas (re-analysis)
 
-## Data:
+Re-analysis of the publicly available single-cell dataset from:
 
-Single-cell analysis of human glioma and immune cells identifies S100A4 as an immunotherapy target, Abdelfattah, et al., 2022, Nature Communications. (GSE182109)
+> **Abdelfattah N, Kumar P, Wang C, et al. Single-cell analysis of human glioma and immune cells identifies S100A4 as an immunotherapy target.**  
+> *Nature Communications* 2022. https://doi.org/10.1038/s41467-022-28372-y  
+> Data: GEO: GSE182109
 
-Downloaded from Single cell portal (Broad institute)
+## Dataset at a glance
+- **System:** Human glioma / glioblastoma tumour, immune and stromal cells (~200k cells)
+- **Assay:** 10x Genomics scRNA-seq
+- **Accession / source:** GEO: GSE182109
 
-see [GBMatlas](https://github.com/parveendabas/GBMatlas) github repo for more info on dataset and code associated with original publication
+## What this repository does
+Exploratory re-analysis of the Abdelfattah et al. human glioma scRNA-seq atlas (GSE182109), focusing on immune-cell populations of interest. See `scripts/02_GBM_Dataset_playground.Rmd`.
 
-## Purpose
+## Repository structure
+- `scripts/` — analysis pipeline (numbered `.Rmd` scripts run in order)
+- `Setup.R` / `Load_packages.R` — environment setup and package loading
+- Large data objects are **not** tracked in Git — download from the source above.
 
-playground GitHub to explore and visualise GBM dataset GSE182109
+---
+Part of my NK / T-cell single-cell research programme — see my [GitHub profile](https://github.com/Eomesodermin) and [dilloncorvino.com](https://dilloncorvino.com).  
+Author: **Dillon Corvino**
